@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<body  >
+    
+    <head>
+ <link rel="stylesheet" href="estilos.css">
+
+        <script>
+        function allowDrop(ev) {
+          ev.preventDefault();
+        }
+        
+        function drag(ev) {
+          ev.dataTransfer.setData("text", ev.target.id);
+        }
+        
+        function drop(ev) {
+          ev.preventDefault();
+          var data = ev.dataTransfer.getData("text");
+          ev.target.appendChild(document.getElementById(data));
+        }
+        </script>
+
+    </head>
+
+    <h1 id="Inicio">GEOLOCALIZACION </h1>
+
+    <p>
+        HTML5 Geolocalizacion with Gooogle Maps API<br>
+        La API de geolocalización HTML se utiliza para obtener la 
+        posición geográfica de un usuario.<br>
+
+    Dado que esto puede comprometer la privacidad, 
+    el puesto no está disponible a menos que el usuario lo apruebe.
+    </p>
+
+<p>Click en el boton para obtener tus coordenadas</p>
+
+<button onclick="getLocation()">Coordenadas</button>
+
+<p id="demo"></p>
+
+<div class="container">
+    <div id="map"></div>
+    <div id="mapLatitudeLongitude"></div>
+</div>
+
+<script>
+    var x = document.getElementById("demo");
+    
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+    
+    function showPosition(position) {
+      x.innerHTML = "Latitude: " + position.coords.latitude + 
+      "<br>Longitude: " + position.coords.longitude;
+    }
+    </script>
+
+
+<h1 id="inicio">HTML Drag and Drop API </h1>
+<a href="#inicio">Volver a Inicio</a>
+
+    <p>Arrasta cada imagen a su cuadro correspondiente</p>
+
+
+    <script>
+        function allowDrop(ev) {
+          ev.preventDefault();
+        }
+        
+        function drag(ev) {
+          ev.dataTransfer.setData("text", ev.target.id);
+        }
+        
+        function drop(ev) {
+          ev.preventDefault();
+          var data = ev.dataTransfer.getData("text");
+          ev.target.appendChild(document.getElementById(data));
+        }
+        </script>
+
+
+        <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">facebook</div>
+
+        <img id="drag1" src="IMAGENES/facebook.png" draggable="true" ondragstart="drag(event)" width="69" height="69">
+       
+</body>
+</html>
